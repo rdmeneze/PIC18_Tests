@@ -1,1 +1,0 @@
-Warning[2103] C:\sources\embarcados\TinySoftTimer.X\src\main.c 18 : default startup code expects main function declared as 'void main (void)'
