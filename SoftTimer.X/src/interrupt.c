@@ -2,7 +2,6 @@
 #include <usart.h>
 #include "interrupt.h"
 #include "defs.h"
-#include "softtimer.h"
 #include "util.h"
 #include "error.h"
 

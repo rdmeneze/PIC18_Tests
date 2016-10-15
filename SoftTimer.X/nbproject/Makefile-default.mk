@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=src/error.c src/interrupt.c src/main.c src/sysLib.c src/TTimer.c
+SOURCEFILES_QUOTED_IF_SPACED=src/TTimer.c src/error.c src/interrupt.c src/main.c src/sysLib.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/interrupt.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/sysLib.o ${OBJECTDIR}/src/TTimer.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/src/error.o.d ${OBJECTDIR}/src/interrupt.o.d ${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/sysLib.o.d ${OBJECTDIR}/src/TTimer.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/TTimer.o ${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/interrupt.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/sysLib.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/src/TTimer.o.d ${OBJECTDIR}/src/error.o.d ${OBJECTDIR}/src/interrupt.o.d ${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/sysLib.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/interrupt.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/sysLib.o ${OBJECTDIR}/src/TTimer.o
+OBJECTFILES=${OBJECTDIR}/src/TTimer.o ${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/interrupt.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/sysLib.o
 
 # Source Files
-SOURCEFILES=src/error.c src/interrupt.c src/main.c src/sysLib.c src/TTimer.c
+SOURCEFILES=src/TTimer.c src/error.c src/interrupt.c src/main.c src/sysLib.c
 
 
 CFLAGS=
@@ -95,6 +95,14 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/src/TTimer.o: src/TTimer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/TTimer.o.d 
+	@${RM} ${OBJECTDIR}/src/TTimer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/TTimer.o   src/TTimer.c 
+	@${DEP_GEN} -d ${OBJECTDIR}/src/TTimer.o 
+	@${FIXDEPS} "${OBJECTDIR}/src/TTimer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
+	
 ${OBJECTDIR}/src/error.o: src/error.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/error.o.d 
@@ -127,15 +135,15 @@ ${OBJECTDIR}/src/sysLib.o: src/sysLib.c  nbproject/Makefile-${CND_CONF}.mk
 	@${DEP_GEN} -d ${OBJECTDIR}/src/sysLib.o 
 	@${FIXDEPS} "${OBJECTDIR}/src/sysLib.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
 	
+else
 ${OBJECTDIR}/src/TTimer.o: src/TTimer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/TTimer.o.d 
 	@${RM} ${OBJECTDIR}/src/TTimer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/TTimer.o   src/TTimer.c 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/TTimer.o   src/TTimer.c 
 	@${DEP_GEN} -d ${OBJECTDIR}/src/TTimer.o 
 	@${FIXDEPS} "${OBJECTDIR}/src/TTimer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
 	
-else
 ${OBJECTDIR}/src/error.o: src/error.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/error.o.d 
@@ -167,14 +175,6 @@ ${OBJECTDIR}/src/sysLib.o: src/sysLib.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/sysLib.o   src/sysLib.c 
 	@${DEP_GEN} -d ${OBJECTDIR}/src/sysLib.o 
 	@${FIXDEPS} "${OBJECTDIR}/src/sysLib.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
-	
-${OBJECTDIR}/src/TTimer.o: src/TTimer.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/src" 
-	@${RM} ${OBJECTDIR}/src/TTimer.o.d 
-	@${RM} ${OBJECTDIR}/src/TTimer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/TTimer.o   src/TTimer.c 
-	@${DEP_GEN} -d ${OBJECTDIR}/src/TTimer.o 
-	@${FIXDEPS} "${OBJECTDIR}/src/TTimer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
 	
 endif
 
