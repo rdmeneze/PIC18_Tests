@@ -33,7 +33,7 @@ static WORD wSTimerTimeInterval = 100;
 
 //------------------------------------------------------------------------------
 
-BYTE STimerInit( WORD wTimerTick_us )
+BYTE STimerInit( const uint16_t wTimerTick_us )
 {
     BYTE bRet = 0;
     BYTE bCount;
@@ -61,7 +61,7 @@ BYTE STimerInit( WORD wTimerTick_us )
 
 //------------------------------------------------------------------------------
 
-TIMERHANDLE STimerGetTimer( WORD TimeMS )
+TIMERHANDLE STimerGetTimer( const uint16_t TimeMS )
 {
     BYTE bCount;
     struct STimer* pTimer;
@@ -91,7 +91,7 @@ TIMERHANDLE STimerGetTimer( WORD TimeMS )
         
 //------------------------------------------------------------------------------        
 
-BYTE STimerIsTimeOut( TIMERHANDLE hndTimer )
+BYTE STimerIsTimeOut( const TIMERHANDLE hndTimer )
 {
     BYTE bCount;
     struct STimer* pTimer;
@@ -101,7 +101,7 @@ BYTE STimerIsTimeOut( TIMERHANDLE hndTimer )
     {    
         for ( bCount = 0, pTimer = &timer[0]; bCount < GET_ARRAY_LEN( timer ); bCount++, pTimer++ )
         {
-            if ( pTimer->handle == hndTimer )
+            if ( hndTimer == pTimer->handle )
             {
                 if ( pTimer->count < GetTimerTick(TIMER0) )
                 {
@@ -116,7 +116,7 @@ BYTE STimerIsTimeOut( TIMERHANDLE hndTimer )
 
 //------------------------------------------------------------------------------
 
-BYTE STimerRelease( TIMERHANDLE hndTimer )
+BYTE STimerRelease( const TIMERHANDLE hndTimer )
 {
     BYTE bCount;
     struct STimer* pTimer;
@@ -126,7 +126,7 @@ BYTE STimerRelease( TIMERHANDLE hndTimer )
     {
         for ( bCount = 0, pTimer = &timer[0]; bCount < GET_ARRAY_LEN( timer ); bCount++, pTimer++ )
         {
-            if ( pTimer->handle == hndTimer )
+            if ( hndTimer == pTimer->handle )
             {
                 pTimer->handle  = TIMER_NULL_HANDLE;
                 pTimer->count   = 0;
@@ -143,7 +143,7 @@ BYTE STimerRelease( TIMERHANDLE hndTimer )
 
 //------------------------------------------------------------------------------
 
-BYTE STimerRestart( TIMERHANDLE hndTimer )
+BYTE STimerRestart( const TIMERHANDLE hndTimer )
 {
     BYTE bCount;
     struct STimer* pTimer;
@@ -153,7 +153,7 @@ BYTE STimerRestart( TIMERHANDLE hndTimer )
     {
         for ( bCount = 0, pTimer = &timer[0]; bCount < GET_ARRAY_LEN( timer ); bCount++, pTimer++ )
         {
-            if ( pTimer->handle == hndTimer )
+            if ( hndTimer == pTimer->handle )
             {
                 pTimer->count   = pTimer->value + GetTimerTick(TIMER0);
 

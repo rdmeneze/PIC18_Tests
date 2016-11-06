@@ -19,7 +19,7 @@ typedef BYTE TIMERHANDLE;
  * @param   dwTimerTick timer interrupt time in us
  * @return  success or fault status
  */
-uint8_t STimerInit( uint16_t wTimerTick_us );
+uint8_t STimerInit( const uint16_t wTimerTick_us );
 
 
 /**
@@ -27,28 +27,28 @@ uint8_t STimerInit( uint16_t wTimerTick_us );
  * @param   TimeMS
  * @return  timer handle ot TIMER_HANDLE_NUL
  */
-TIMERHANDLE STimerGetTimer( uint16_t TimeMS );
+TIMERHANDLE STimerGetTimer( const uint16_t TimeMS );
 
 /**
  * @brief   verify if the timer is timeout
  * @param   hndTimer
  * @return  status of timeout
  */
-uint8_t STimerIsTimeOut( TIMERHANDLE hndTimer );
+uint8_t STimerIsTimeOut( const TIMERHANDLE hndTimer );
 
 /**
  * @brief   reinitialize the timer counter
  * @param   hndTimer
  * @return  success or fault status
  */
-uint8_t STimerRestart( TIMERHANDLE hndTimer );
+uint8_t STimerRestart( const TIMERHANDLE hndTimer );
 
 /**
  * @brief   release a timer
  * @param   hndTimer
  * @return  success or fault status
  */
-uint8_t STimerRelease( TIMERHANDLE hndTimer );
+uint8_t STimerRelease( const TIMERHANDLE hndTimer );
 
 #endif	/* SOFTTIMER_H */
 
