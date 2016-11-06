@@ -1,59 +1,34 @@
 
-
 #include <usart.h>
 #include "interrupt.h"
 #include "defs.h"
 #include "softtimer.h"
 #include "util.h"
 #include "error.h"
+#include "Timer.h"
 
 /*----------------------------------------------------------------------------*/
-
-VOID high_isr(VOID);
-
-PRIVATE BYTE b;
-
-/*----------------------------------------------------------------------------*/
-
-extern WORD wReloadTimer[1];
-extern void TimerTick( void );
+/* foward declarations */
+void high_isr(void);
+void low_isr (void);
 
 /*----------------------------------------------------------------------------*/
+/* external objects */
+extern WORD wReloadTimer[TIMER_LEN];
 
-INT8 interruptsInit( VOID )
+//------------------------------------------------------------------------------
+#pragma code low_vector=0x18
+void interrupt_at_low_vector(void)
 {
-    INT8 rc = ERROR_SUCCESS;
-    
-    /* Enable interrupt priority */
-    RCONbits.IPEN = 1;
-
-    /* Enable all high priority interrupts */
-    INTCONbits.GIEH = 1;	
-    
-    /* Make receive interrupt high priority */
-    IPR1bits.RCIP = 1;
-
-    /* Enable RX interrupt on USART 1 */
-    PIE1bits.RC1IE = 1;        
-    
-    return rc;
-}
-
+      _asm GOTO low_isr _endasm
+ }
+ #pragma code /* return to the default code section */
+ #pragma interruptlow low_isr
+ void low_isr (void)
+ {
+      Nop();
+ }
 //------------------------------------------------------------------------------
-// #pragma code low_vector=0x18
-// void interrupt_at_low_vector(void)
-// {
-//      _asm GOTO low_isr _endasm
-// }
-// #pragma code /* return to the default code section */
-// #pragma interruptlow low_isr
-// void low_isr (void)
-// {
-//      Nop();
-// }
-//------------------------------------------------------------------------------
-
-
 
 /* 
  * For PIC18 devices the high interrupt vector is found at
@@ -66,18 +41,17 @@ VOID interrupt_at_high_vector( VOID )
 {
   _asm GOTO high_isr _endasm
 }
-
 #pragma code /* return to the default code section */
 
 #pragma interrupt high_isr
-VOID high_isr (VOID)
+void high_isr (void)
 {
     if ( INTCONbits.TMR0IF )
     {
-        //TMR0H   = HIGH_BYTE((WORD)(-wReloadTimer[0]+1));
-        TMR0L   = LOW_BYTE((WORD)(-wReloadTimer[0]+1));   
+        TMR0H = HIGH_BYTE(wReloadTimer[TIMER0]);
+        TMR0L = LOW_BYTE(wReloadTimer[TIMER0]);        
                 
-        TimerTick(); // calls the timer0 callback function
+        TimerTick( TIMER0 ); // calls the timer0 callback function
         
         INTCONbits.TMR0IF = 0;
     }

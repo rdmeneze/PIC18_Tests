@@ -27,6 +27,10 @@
       <itemPath>src/error_codes.h</itemPath>
       <itemPath>src/fuses.h</itemPath>
       <itemPath>src/processor.h</itemPath>
+      <itemPath>src/clock.c</itemPath>
+      <itemPath>src/clock.h</itemPath>
+      <itemPath>src/Timer.h</itemPath>
+      <itemPath>src/Timer.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

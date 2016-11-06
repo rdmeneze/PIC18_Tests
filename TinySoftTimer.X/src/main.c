@@ -11,27 +11,25 @@
 #include "softtimer.h"
 #include "error.h"
 #include "interrupt.h"
+#include "sysLib.h"
 
 /*
  * 
  */
-int main(int argc, char** argv) 
+void main(void) 
 {
     TIMERHANDLE handle;    
-    BYTE rc =  interruptsInit( );
-
-    if ( ERROR_SUCCESS != rc )
-    {
-        errorFatal( ERROR_NOT_READY );
-    }   
+    BYTE rc;  
     
-    rc = STimerInit( 250 );
+    HwInit( );
+    
+    rc = STimerInit( 500 );
     if ( ERROR_SUCCESS != rc )
     {
         errorFatal( ERROR_NOT_READY );
     }
     
-    handle = STimerGetTimer( 100 );
+    handle = STimerGetTimer( 2 );
     if ( TIMER_NULL_HANDLE == handle )
     {
         errorFatal( ERROR_NOT_READY );        
@@ -49,7 +47,5 @@ int main(int argc, char** argv)
             STimerRestart( handle );
         }
     }
-    
-    return (0);
 }
 

@@ -4,6 +4,4 @@
 
 #include "defs.h"
 
-INT8 interruptsInit( VOID );
-
 #endif

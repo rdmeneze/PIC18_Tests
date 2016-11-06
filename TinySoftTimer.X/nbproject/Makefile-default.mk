@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=src/error.c src/softtimer.c src/sysLib.c src/main.c src/interrupt.c
+SOURCEFILES_QUOTED_IF_SPACED=src/error.c src/softtimer.c src/sysLib.c src/main.c src/interrupt.c src/clock.c src/Timer.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/softtimer.o ${OBJECTDIR}/src/sysLib.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/interrupt.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/src/error.o.d ${OBJECTDIR}/src/softtimer.o.d ${OBJECTDIR}/src/sysLib.o.d ${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/interrupt.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/softtimer.o ${OBJECTDIR}/src/sysLib.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/interrupt.o ${OBJECTDIR}/src/clock.o ${OBJECTDIR}/src/Timer.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/src/error.o.d ${OBJECTDIR}/src/softtimer.o.d ${OBJECTDIR}/src/sysLib.o.d ${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/interrupt.o.d ${OBJECTDIR}/src/clock.o.d ${OBJECTDIR}/src/Timer.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/softtimer.o ${OBJECTDIR}/src/sysLib.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/interrupt.o
+OBJECTFILES=${OBJECTDIR}/src/error.o ${OBJECTDIR}/src/softtimer.o ${OBJECTDIR}/src/sysLib.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/interrupt.o ${OBJECTDIR}/src/clock.o ${OBJECTDIR}/src/Timer.o
 
 # Source Files
-SOURCEFILES=src/error.c src/softtimer.c src/sysLib.c src/main.c src/interrupt.c
+SOURCEFILES=src/error.c src/softtimer.c src/sysLib.c src/main.c src/interrupt.c src/clock.c src/Timer.c
 
 
 CFLAGS=
@@ -135,6 +135,22 @@ ${OBJECTDIR}/src/interrupt.o: src/interrupt.c  nbproject/Makefile-${CND_CONF}.mk
 	@${DEP_GEN} -d ${OBJECTDIR}/src/interrupt.o 
 	@${FIXDEPS} "${OBJECTDIR}/src/interrupt.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
 	
+${OBJECTDIR}/src/clock.o: src/clock.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/clock.o.d 
+	@${RM} ${OBJECTDIR}/src/clock.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa- -Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/clock.o   src/clock.c 
+	@${DEP_GEN} -d ${OBJECTDIR}/src/clock.o 
+	@${FIXDEPS} "${OBJECTDIR}/src/clock.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
+	
+${OBJECTDIR}/src/Timer.o: src/Timer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/Timer.o.d 
+	@${RM} ${OBJECTDIR}/src/Timer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa- -Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/Timer.o   src/Timer.c 
+	@${DEP_GEN} -d ${OBJECTDIR}/src/Timer.o 
+	@${FIXDEPS} "${OBJECTDIR}/src/Timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
+	
 else
 ${OBJECTDIR}/src/error.o: src/error.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
@@ -175,6 +191,22 @@ ${OBJECTDIR}/src/interrupt.o: src/interrupt.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa- -Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/interrupt.o   src/interrupt.c 
 	@${DEP_GEN} -d ${OBJECTDIR}/src/interrupt.o 
 	@${FIXDEPS} "${OBJECTDIR}/src/interrupt.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
+	
+${OBJECTDIR}/src/clock.o: src/clock.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/clock.o.d 
+	@${RM} ${OBJECTDIR}/src/clock.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa- -Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/clock.o   src/clock.c 
+	@${DEP_GEN} -d ${OBJECTDIR}/src/clock.o 
+	@${FIXDEPS} "${OBJECTDIR}/src/clock.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
+	
+${OBJECTDIR}/src/Timer.o: src/Timer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/Timer.o.d 
+	@${RM} ${OBJECTDIR}/src/Timer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -p$(MP_PROCESSOR_OPTION) -I"src" -ms -oa- -Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-  -I ${MP_CC_DIR}\\..\\h  -fo ${OBJECTDIR}/src/Timer.o   src/Timer.c 
+	@${DEP_GEN} -d ${OBJECTDIR}/src/Timer.o 
+	@${FIXDEPS} "${OBJECTDIR}/src/Timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../ -c18 
 	
 endif
 
